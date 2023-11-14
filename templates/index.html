@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+      <meta charset="UTF-8">
+      <title>Test task for MTS</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+          justify-content: space-between; /* Распределение элементов по вертикали */
+          align-items: center; /* Центрируем по горизонтали */
+        }
+
+        header {
+          background-color: #f2f2f2;
+          padding: 20px;
+          text-align: center;
+          width: 100%;
+        }
+
+        footer {
+          background-color: #f2f2f2;
+          padding: 20px;
+          text-align: center;
+          width: 100%;
+        }
+
+        table {
+          border-collapse: collapse;
+          margin: 20px; /* Добавим отступ для красоты */
+        }
+
+        th, td {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        th {
+          background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h2>Get random questions for the quiz</h2>
+      </header>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">№</th>
+            <th scope="col">Question</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Ball</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for index in range(questions|length) %}
+            <tr>
+              <th scope="row">{{ index + 1 }}</th>
+              <td>{{ questions[index] }}</td>
+              <td>{{ answers[index] }}</td>
+              <td>{{ values[index] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <footer>
+        <p>© 2023 Test task for MTS</p>
+      </footer>
+    </body>
+</html>
