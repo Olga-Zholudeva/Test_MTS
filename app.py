@@ -1,5 +1,6 @@
-import requests
 from http import HTTPStatus
+
+import requests
 from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
@@ -17,6 +18,7 @@ def get_data():
     else:
         return f"Ошибка при получении данных: {response.status_code}"
 
+
 @app.route("/")
 def base_view():
     """Обрабатываем данные и отдаем на рендеринг главной==единственной страницы."""
@@ -26,4 +28,3 @@ def base_view():
     values = [item["value"] for item in data]
     context = {"questions": questions, "answers": answers, "values": values}
     return render_template("index.html", **context)
-
