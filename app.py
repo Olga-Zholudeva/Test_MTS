@@ -10,13 +10,12 @@ PARAMS = {"count": 10}
 
 def get_data():
     """Получаем данные с внешного API."""
-    response = requests.get(URL, params=PARAMS)
+    response = requests.get(URL, PARAMS)
     if response.status_code == HTTPStatus.OK:
         data = response.json()
         return data
     else:
         return f"Ошибка при получении данных: {response.status_code}"
-
 
 @app.route("/")
 def base_view():
@@ -28,6 +27,3 @@ def base_view():
     context = {"questions": questions, "answers": answers, "values": values}
     return render_template("index.html", **context)
 
-
-# if __name__ == '__main__':
-#     app.run()

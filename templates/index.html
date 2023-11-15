@@ -53,7 +53,7 @@
       <header>
         <h2>Get random questions for the quiz</h2>
       </header>
-      <table class="table">
+      <table class="table" id="questionTable">
         <thead>
           <tr>
             <th scope="col">№</th>
@@ -73,8 +73,37 @@
           {% endfor %}
         </tbody>
       </table>
+      <button id="updateBtn" onclick="updateTable()">Update the table</button>
       <footer>
         <p>© 2023 Test task for MTS</p>
       </footer>
+      <script>
+        function updateTable() {
+          fetch('https://jservice.io/api/random?count=10')
+          .then(response => response.json())
+          .then(data => {
+              const questionTable = document.getElementById('questionTable');
+              const tbody = questionTable.querySelector('tbody');
+      
+              tbody.innerHTML = '';
+      
+              for (let i = 0; i <= 10; i++) {
+                  const number = i + 1;
+                  const question = data[i]['question'];
+                  const answer = data[i]['answer'];
+                  const value = data[i]['value'];
+                  const row = `
+                  <tr>
+                      <td>${number}</td>
+                      <td>${question}</td>
+                      <td>${answer}</td>
+                      <td>${value}</td>
+                  </tr>
+                  `;
+                  tbody.insertAdjacentHTML('beforeend', row);
+              }
+          });
+      }
+      </script>
     </body>
 </html>
