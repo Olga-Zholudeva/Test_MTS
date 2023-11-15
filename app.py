@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 import requests
-from flask import Flask, jsonify, render_template
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -28,3 +28,7 @@ def base_view():
     values = [item["value"] for item in data]
     context = {"questions": questions, "answers": answers, "values": values}
     return render_template("index.html", **context)
+
+
+if __name__ == "__main__":
+    app.run()
